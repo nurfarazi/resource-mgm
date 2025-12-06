@@ -257,16 +257,15 @@ export const AddProjectModal: React.FC<AddProjectModalProps> = ({ isOpen, onClos
             </button>
             <button 
               type="submit"
-              disabled={totalAllocation > 100}
+              disabled={false}
               style={{
                 flex: 1,
                 padding: '0.75rem',
-                background: totalAllocation > 100 ? '#ef4444' : 'var(--primary)',
+                background: 'var(--primary)',
                 color: 'white',
                 fontWeight: 600,
-                opacity: totalAllocation > 100 ? 0.5 : 1,
-                cursor: totalAllocation > 100 ? 'not-allowed' : 'pointer',
-                boxShadow: totalAllocation > 100 ? 'none' : '0 0 20px var(--primary-glow)'
+                cursor: 'pointer',
+                boxShadow: '0 0 20px var(--primary-glow)'
               }}
             >
               {editingProject ? 'Save Changes' : 'Create Project'}

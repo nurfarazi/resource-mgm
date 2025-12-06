@@ -142,45 +142,8 @@ function App() {
             </p>
           </div>
           
-          <div style={{ display: 'flex', gap: '1rem' }}>
-              <button
-                  onClick={() => setIsSettingsModalOpen(true)}
-                  style={{
-                      padding: '0.5rem',
-                      background: 'transparent',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      color: 'var(--text-muted)',
-                      borderRadius: '0.5rem',
-                      fontSize: '1.2rem',
-                      width: '40px',
-                      height: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer'
-                  }}
-                  title="Settings & Data"
-              >
-                  ⚙️
-              </button>
-              <button
-                  onClick={() => setIsUserModalOpen(true)}
-                  style={{
-                      padding: '0.5rem 1rem',
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      color: 'var(--text-muted)',
-                      borderRadius: '0.5rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      fontSize: '0.9rem',
-                      cursor: 'pointer'
-                  }}
-              >
-                  <span>👥</span> Manage Team
-              </button>
-          </div>
+          
+          <div />
         </header>
         
         {/* Summary */}
@@ -279,32 +242,105 @@ function App() {
           )}
         </main>
 
-        <button 
-          onClick={() => setIsModalOpen(true)}
-          style={{
-            position: 'fixed',
-            bottom: '2rem',
-            right: '2rem',
-            width: '64px',
-            height: '64px',
-            borderRadius: '50%',
-            background: 'var(--primary)',
-            color: 'white',
-            border: 'none',
-            boxShadow: '0 10px 40px -10px var(--primary-glow)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '2rem',
-            cursor: 'pointer',
-            zIndex: 100,
-            transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1) rotate(90deg)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
-        >
-          +
-        </button>
+        <div style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+          zIndex: 100
+        }}>
+          {/* Settings */}
+          <button
+              onClick={() => setIsSettingsModalOpen(true)}
+              style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  background: 'var(--bg-card)',
+                  color: 'var(--text-muted)',
+                  border: 'var(--glass-border)',
+                  backdropFilter: 'blur(10px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1.2rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  transition: 'all 0.2s'
+              }}
+              title="Settings & Data"
+              onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.1)';
+                  e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.color = 'var(--text-muted)';
+              }}
+          >
+              ⚙️
+          </button>
+
+          {/* Manage Users */}
+          <button
+              onClick={() => setIsUserModalOpen(true)}
+              style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  background: 'var(--bg-card)',
+                  color: 'var(--text-muted)',
+                  border: 'var(--glass-border)',
+                  backdropFilter: 'blur(10px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1.2rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  transition: 'all 0.2s'
+              }}
+              title="Manage Team"
+              onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.1)';
+                  e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.color = 'var(--text-muted)';
+              }}
+          >
+              👥
+          </button>
+
+          {/* Create Project */}
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: 'var(--primary)',
+              color: 'white',
+              border: 'none',
+              boxShadow: '0 10px 40px -10px var(--primary-glow)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '2rem',
+              cursor: 'pointer',
+              transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)'
+            }}
+            title="Create Project"
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1) rotate(90deg)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
+          >
+            +
+          </button>
+        </div>
       </div>
 
       <AddProjectModal 
