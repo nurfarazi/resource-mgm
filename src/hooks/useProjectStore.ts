@@ -68,10 +68,26 @@ export function useProjectStore() {
     setProjects((prev) => prev.filter((p) => p.id !== id));
   };
 
+  const importProjects = (newProjects: Project[]) => {
+    setProjects(newProjects);
+  };
+
+  const resetProjects = () => {
+    setProjects([]);
+    window.localStorage.removeItem(STORAGE_KEY);
+  };
+
+  const reorderProjects = (reorderedProjects: Project[]) => {
+    setProjects(reorderedProjects);
+  };
+
   return {
     projects,
     addProject,
     updateProject,
     removeProject,
+    importProjects,
+    resetProjects,
+    reorderProjects
   };
 }

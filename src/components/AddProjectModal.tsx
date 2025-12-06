@@ -168,8 +168,8 @@ export const AddProjectModal: React.FC<AddProjectModalProps> = ({ isOpen, onClos
                    <div style={{ flex: 1 }}>
                     <label style={labelStyle}>Workload ({member.allocation}%)</label>
                     <input 
-                      type="number"
-                      style={{ ...inputStyle, padding: '0.5rem' }}
+                      type="range"
+                      style={{ width: '100%', height: '4px', margin: '0.5rem 0' }}
                       min="0"
                       max="100"
                       value={member.allocation}

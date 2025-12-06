@@ -54,10 +54,21 @@ export function useUserStore() {
     setUsers(prev => prev.filter(u => u.id !== id));
   };
 
+  const importUsers = (newUsers: User[]) => {
+    setUsers(newUsers);
+  };
+
+  const resetUsers = () => {
+    setUsers([DEFAULT_ME]);
+    window.localStorage.removeItem(USER_STORAGE_KEY);
+  };
+
   return {
     users,
     addUser,
     updateUser,
-    removeUser
+    removeUser,
+    importUsers,
+    resetUsers
   };
 }
