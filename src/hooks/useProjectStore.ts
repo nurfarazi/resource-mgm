@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Project, ProjectInput } from '../types';
+import type { Project, ProjectInput, TeamMember } from '../types';
 
 const STORAGE_KEY = 'resource-mgm-data-v1';
 
@@ -7,7 +7,32 @@ export function useProjectStore() {
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
       const item = window.localStorage.getItem(STORAGE_KEY);
-      return item ? JSON.parse(item) : [];
+      const loaded = item ? JSON.parse(item) : [];
+
+      // Migration logic: Convert old projects to new format
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return loaded.map((p: any) => {
+        if (!p.assignments) {
+          // It's an old project
+          const me: TeamMember = {
+            id: 'me',
+            name: 'Me',
+            allocation: p.allocation || 0,
+            typeSplit: p.typeSplit || { frontend: 50, backend: 50 },
+            color: p.color || '#6366f1',
+            isMe: true
+          };
+          return {
+            ...p,
+            assignments: [me],
+            // clean up legacy fields
+            allocation: undefined,
+            typeSplit: undefined,
+            color: undefined
+          };
+        }
+        return p;
+      });
     } catch (error) {
       console.error('Failed to load projects:', error);
       return [];
